@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdallah Khattab - Laravel & Blockchain Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <style>
+  body {
+    font-family: 'Cairo', sans-serif;
+    scroll-behavior: smooth;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    overflow-x: hidden;
+}
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .hero-bg {
+            background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .navbar {
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        .navbar:hover {
+            border-bottom: 1px solid rgba(45, 212, 191, 0.5);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #2dd4bf, #f59e0b);
+            transform: scaleX(1);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #2dd4bf, #f59e0b);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        .block {
+            background: #1f2937;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .block:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(45, 212, 191, 0.1);
+        }
+        #blockchain-canvas, #skills-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0;
+        }
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .project-block::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: 20px;
+            height: 3px;
+            background: linear-gradient(to right, #2dd4bf, #f59e0b);
+            z-index: 10;
+        }
+        .project-block:first-child::before {
+            display: none;
+        }
+        .tech-pill {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+        }
+        .tech-pill:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(to right, #2dd4bf, #f59e0b);
+            color: #1f2937;
+            box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
+        }
+        .verified-badge {
+            background: linear-gradient(135deg, #2dd4bf 0%, #f59e0b 100%);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.4);
+        }
+        .pulse-glow {
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 8px rgba(45, 212, 191, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(45, 212, 191, 0.7); }
+            100% { box-shadow: 0 0 8px rgba(45, 212, 191, 0.3); }
+        }
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: #2dd4bf;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
+        }
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2dd4bf, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .skill-card:hover .skill-icon {
+            transform: scale(1.2);
+        }
+        .skill-title {
+            font-size: 1.75rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .skill-description {
+            font-size: 1rem;
+            color: #d1d5db;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #374151;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #2dd4bf, #f59e0b);
+            width: 0; /* Start at 0 for animation */
+            transition: width 1.5s ease-in-out;
+        }
+        .tech-stack-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .tech-stack-item:hover {
+            transform: translateY(-5px);
+        }
+        .tech-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        .tech-stack-item:hover .tech-icon {
+            background: linear-gradient(135deg, #2dd4bf, #f59e0b);
+            box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
+        }
+        .tech-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #e2e8f0;
+            text-align: center;
+        }
+        .section-divider {
+            background: linear-gradient(to right, transparent, #2dd4bf, #f59e0b, transparent);
+            height: 2px;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.5), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.3), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+        /* Initial hidden state for animatable elements */
+        section h2, section h3, section p, .block, .skill-card, .tech-stack-item {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        /* Ensure hero section elements are visible on load */
+        #hero h1, #hero p, #hero .text-cyan-400, #hero a, #typed-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-3xl font-bold text-white">AK<span class="text-amber-500">.</span></div>
+                </div>
+                <div class="hidden md:flex items-center space-x-12">
+                    <a href="#about" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">About</a>
+                    <a href="#projects" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">Projects</a>
+                    <a href="#skills" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">Skills</a>
+                    <a href="#contact" class="bg-gradient-to-r from-cyan-500 to-amber-500 text-white px-6 py-2 rounded-full hover:from-cyan-600 hover:to-amber-600 transition duration-300 font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-200 hover:text-amber-500 focus:outline-none hamburger">
+                        <span class="block w-6 h-0.5 bg-gray-200 mb-1.5"></span>
+                        <span class="block w-6 h-0.5 bg-gray-200 mb-1.5"></span>
+                        <span class="block w-6 h-0.5 bg-gray-200"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95 backdrop-filter blur-md border-t border-gray-800">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="#about" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">About</a>
+                <a href="#projects" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Projects</a>
+                <a href="#skills" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Skills</a>
+                <a href="#contact" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-bg relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+        <canvas id="blockchain-canvas"></canvas>
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-cyan-400 font-semibold uppercase tracking-widest text-white">Web Developer</span>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-3 mb-6">Abdallah Khattab</h1>
+                    <div class="h-12">
+                        <span id="typed-text" class="text-xl md:text-2xl text-gray-300"></span>
+                        <span class="typed-cursor">|</span>
+                    </div>
+                    <p class="text-gray-300 my-8 max-w-xl mx-auto md:mx-0 text-lg">Crafting scalable web solutions with Laravel, powered by cutting-edge blockchain technology.</p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mt-10">
+                        <a href="#projects" class="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-600 hover:to-amber-600 text-white px-10 py-4 rounded-full font-medium transition duration-300 text-center text-lg">
+                            Explore My Work
+                        </a>
+                        <a href="#contact" class="border-2 border-white text-white px-10 py-4 rounded-full font-medium hover:bg-white hover:text-indigo-900 transition duration-300 text-center text-lg">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                    <div class="relative">
+                        <div class="blockchain-node absolute w-20 h-20 bg-cyan-500 rounded-full opacity-25 -top-10 left-16 pulse-glow"></div>
+                        <div class="blockchain-node absolute w-28 h-28 bg-amber-500 rounded-full opacity-25 top-24 -left-16 pulse-glow"></div>
+                        <div class="blockchain-node absolute w-24 h-24 bg-purple-500 rounded-full opacity-25 -bottom-10 right-16 pulse-glow"></div>
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-2xl z-10 relative">
+                            <div class="flex items-center space-x-3 border-b border-gray-700 pb-3 mb-4">
+                                <div class="w-4 h-4 rounded-full bg-red-500"></div>
+                                <div class="w-4 h-4 rounded-full bg-yellow-500"></div>
+                                <div class="w-4 h-4 rounded-full bg-green-500"></div>
+                                <div class="text-sm text-gray-400 ml-3">api-controller.php</div>
+                            </div>
+                            <pre class="text-xs md:text-sm text-gray-300 overflow-x-auto p-4 bg-gray-800 rounded-lg"><code>namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Services\ApiService;
+
+class ApiController extends Controller
+{
+    protected $apiService;
+    
+    public function __construct(ApiService $apiService)
+    {
+        $this->apiService = $apiService;
+    }
+    
+    public function getUserData(Request $request)
+    {
+        $data = $this->apiService->fetchUserData($request->user());
+        return response()->json($data, 200);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-gray-900"></div>
+    </header>
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-28 bg-gray-800">
+      <div class="container mx-auto px-4 z-10 relative">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">About Me</h2>
+    <div class="flex flex-col md:flex-row items-center">
+        <!-- Image Section -->
+        <div class="md:w-2/5 mb-12 md:mb-0">
+            <div class="relative group w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
+                <img 
+                    src="assets/mypicture/me.jpg" 
+                    alt="Abdallah Khattab" 
+                    class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500 ease-in-out"
+                    style="filter: grayscale(100%);"
+                    onmouseover="this.style.filter='grayscale(0%)'"
+                    onmouseout="this.style.filter='grayscale(100%)'"
+                   
+                />
+               
+            </div>
+        </div>
+
+        <!-- Text Section -->
+        <div class="md:w-3/5 md:pl-16">
+            <h3 class="text-3xl font-bold mb-6 text-white">Laravel Backend Specialist</h3>
+            <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                I'm a passionate full-stack developer specializing in Laravel, with expertise in blockchain integration.
+                I build secure, scalable applications that push the boundaries of innovation.
+            </p>
+            
+            <!-- Info Grid -->
+            <div class="grid grid-cols-2 gap-6 mb-10">
+                <div class="flex items-center">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
+                    <span class="font-semibold text-white">Based in</span>
+                    <span class="ml-3 text-gray-300">Egypt</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
+                    <span class="font-semibold text-white">Experience</span>
+                    <span class="ml-3 text-gray-300">3+ Years</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
+                    <span class="font-semibold text-white">Languages</span>
+                    <span class="ml-3 text-gray-300">PHP, JavaScript, Solidity</span>
+                </div>
+                <!--
+              
+                <div class="flex items-center">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
+                    <span class="font-semibold text-white">Availability</span>
+                    <span class="ml-3 text-gray-300">Open to opportunities</span>
+                </div>
+                  -->
+            </div>
+
+            <!-- Tech Stack Pills -->
+            <div class="flex flex-wrap gap-3 mb-10">
+                <span class="tech-pill text-sm font-medium">Laravel</span>
+                <span class="tech-pill text-sm font-medium">API Development</span>
+                <span class="tech-pill text-sm font-medium">MySQL</span>
+                <span class="tech-pill text-sm font-medium">Blockchain</span>
+                <span class="tech-pill text-sm font-medium">Web3.js</span>
+                <span class="tech-pill text-sm font-medium">Tailwind CSS</span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex space-x-6">
+                <a href="https://github.com/abdallahkhattab" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/abdallah-khattab-73081b2b7" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
+                    <i class="fab fa-twitter text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 md:py-28">
+        <div class="container mx-auto px-4 z-10 relative">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">Featured Projects</h2>
+            <div class="flex items-center justify-center mb-16">
+                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
+                <div class="w-6 h-6 bg-amber-500 rounded-full mx-2 blockchain-node pulse-glow"></div>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
+                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
+                <div class="w-6 h-6 bg-amber-500 rounded-full mx-2 blockchain-node pulse-glow"></div>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
+                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Project 1 -->
+             <div class="block project-block">
+    <div class="relative">
+        <img src="assets/projects/mediumClone.png" alt="Medium Clone" class="w-full h-56 object-cover rounded-t-xl" />
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">Medium Clone Project</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A Laravel-based Medium clone with real-time chat and notifications powered by Pusher. Built with Tailwind CSS, Alpine.js, and Laravel for a seamless user experience.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">Alpine.js</span>
+            <span class="tech-pill text-xs">Tailwind CSS</span>
+            <span class="tech-pill text-xs">Pusher</span>
+            <span class="tech-pill text-xs">Real-time Notifications</span>
+            <span class="tech-pill text-xs">Chat Feature</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+<a href="https://www.youtube.com/watch?v=_MOc5yuW8Hk&t" 
+   target="_blank" 
+   class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+   View Project
+</a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> http://nawasrah.site/medium
+            </span>
+        </div>
+    </div>
+</div>
+
+                <!-- Project 2 -->
+                <div class="block project-block">
+                    <div class="relative">
+                        <img src="assets/projects/NFT.png" alt="NFT Marketplace" class="w-full h-56 object-cover rounded-t-xl" />
+                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+                            <i class="fas fa-check mr-2"></i> Verified
+                        </div>
+                    </div>
+                  <div class="p-8">
+    <h3 class="text-2xl font-bold mb-3 text-white">NFT Marketplace</h3>
+    <p class="text-gray-300 mb-6 text-base">
+        A Laravel-based NFT marketplace integrated with smart contracts for minting and trading digital assets. 
+        Powered by Solidity for smart contract development, Web3.js for blockchain interaction, and MetaMask for user authentication. 
+        Utilizes Hardhat for smart contract testing, Alchemy for seamless blockchain connectivity, and Pinata for IPFS file storage.
+    </p>
+    <a 
+        href="https://sepolia.etherscan.io/address/0x636937bac8A853767CF2422D4eDcCd2CC9e190d0#code" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="text-blue-500 hover:text-blue-700 underline"
+    >
+        Click to see the NFTMarketplace contract on Etherscan (Sepolia)
+    </a>
+    <div class="flex flex-wrap gap-3 mb-6">
+        <span class="tech-pill text-xs">Laravel</span>
+        <span class="tech-pill text-xs">Smart Contracts</span>
+        <span class="tech-pill text-xs">IPFS (Pinata)</span>
+        <span class="tech-pill text-xs">ERC-721</span>
+        <span class="tech-pill text-xs">Solidity</span>
+        <span class="tech-pill text-xs">Web3.js</span>
+        <span class="tech-pill text-xs">MetaMask</span>
+        <span class="tech-pill text-xs">Hardhat</span>
+        <span class="tech-pill text-xs">Alchemy</span>
+    </div>
+    <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+        <a href="https://www.youtube.com/watch?v=2gzDGYa-GoE&t"    target="_blank" 
+ class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
+        <span class="text-gray-400 text-sm">
+            <i class="fas fa-link mr-2"></i> 0x7c2...9d1b
+        </span>
+    </div>
+</div>
+
+                </div>
+
+     <!-- Project 3 -->        
+    <div class="block project-block">
+    <div class="relative">
+        <img src="assets/projects/realestate.png" alt="Real Estate Management System" class="w-full h-56 object-cover rounded-t-xl" />
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">Real Estate Management System</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A Laravel-based real estate management platform with full Dashboard for properties, users, and orders. and a Home page
+            Built with HTML, CSS, JS, Bootstrap,and Laravel for a seamless experience.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">MySQL</span>
+            <span class="tech-pill text-xs">Bootstrap</span>
+            <span class="tech-pill text-xs">HTML</span>
+            <span class="tech-pill text-xs">CSS</span>
+            <span class="tech-pill text-xs">JavaScript</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/real-estate" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/real-estate
+            </span>
+        </div>
+    </div>
+</div>
+
+     <!-- Project 4 -->        
+
+<div class="block project-block">
+    <div class="relative">
+        <img src="assets/projects/hospital.png" alt="Hospital Management System" class="w-full h-56 object-cover rounded-t-xl" />
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">Hospital Management System</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A comprehensive Hospital Management System built using Laravel with the repository pattern for managing various aspects 
+            like patient records, doctor schedules, laboratory and X-ray departments, and more. Includes a dynamic dashboard for 
+            admins and employees.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">MySQL</span>
+            <span class="tech-pill text-xs">Repository Pattern</span>
+            <span class="tech-pill text-xs">Dashboard</span>
+            <span class="tech-pill text-xs">Admin Panel</span>
+            <span class="tech-pill text-xs">Employee Management</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/Laravel-HospitalMangementSystem" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/Laravel-HospitalMangementSystem
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<!-- project 5-->
+
+<div class="block project-block">
+    <div class="relative">
+        <img src="assets/projects/filament.png" alt="E-Commerce Project" class="w-full h-56 object-cover rounded-t-xl" />
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">E-Commerce Project</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A fully functional E-commerce platform built using Laravel and Filament for the admin panel. It allows admins to 
+            manage users, brands, categories, orders, and products. The platform is designed to scale with features 
+            like a responsive front end and powerful back-end management.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">Filament</span>
+            <span class="tech-pill text-xs">MySQL</span>
+            <span class="tech-pill text-xs">E-commerce</span>
+            <span class="tech-pill text-xs">Admin Panel</span>
+            <span class="tech-pill text-xs">Product Management</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/FilamentEcommerce-Laravel" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/FilamentEcommerce-Laravel
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- project 6-->
+
+<div class="block project-block">
+    <div class="relative">
+        <img src="assets/projects/multivendor.png" alt="Multi-Vendor Store" class="w-full h-56 object-cover rounded-t-xl" />
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">Multi-Vendor Store</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A dynamic Multi-Vendor Store built with Laravel that allows vendors to manage their own products and orders. 
+            It features a comprehensive admin dashboard for overall store management, real-time notifications using Pusher, 
+            and a full-fledged order management system, product management, and role management for different user roles.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">Pusher</span>
+            <span class="tech-pill text-xs">MySQL</span>
+            <span class="tech-pill text-xs">Multi-Vendor</span>
+            <span class="tech-pill text-xs">Order Management</span>
+            <span class="tech-pill text-xs">Admin Dashboard</span>
+            <span class="tech-pill text-xs">Real-time Notifications</span>
+            <span class="tech-pill text-xs">Role Management</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/multi-vendor-store" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/multi-vendor-store
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- project 7-->
+
+<div class="block project-block">
+    <div class="relative">
+        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
+            <!-- Example SVG for Cryptocurrency API -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-24 h-24 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3l2 2 2-2V9m-4 0V6"/>
+            </svg>
+        </div>
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">Cryptocurrency API</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A robust RESTful API built with Laravel to fetch, manage, and display cryptocurrency data. 
+            This project integrates with the CoinGecko API to provide real-time cryptocurrency data, including 
+            market prices, historical data, and other key metrics for various cryptocurrencies.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">API</span>
+            <span class="tech-pill text-xs">RESTful</span>
+            <span class="tech-pill text-xs">Cryptocurrency</span>
+            <span class="tech-pill text-xs">CoinGecko API</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/CryptoCurrencyApi-Laravel" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/CryptoCurrencyApi-Laravel
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<!-- project 8-->
+
+
+<div class="block project-block">
+    <div class="relative">
+        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
+            <!-- Example SVG for E-Commerce API -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-24 h-24 text-green-400">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 9.3V6a4 4 0 10-8 0v12a4 4 0 008 0v-3.3m8 3.3a4 4 0 10-8 0V6a4 4 0 018 0v12z"/>
+            </svg>
+        </div>
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">E-Commerce API</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A robust E-Commerce API built with Laravel offering a range of functionalities, including:
+            <ul class="list-disc pl-5">
+                <li>Role management for Super Admins, Admins, Sellers, and Editors</li>
+                <li>Product management and filtering by price, category, and brand</li>
+                <li>JWT authentication for secure login and registration</li>
+                <li>Order tracking and payment integration usingStripe</li>
+                <li>User favorites and cart management</li>
+                <li>Admin can create, edit, or delete users viaArtisan commands</li>
+            </ul>
+            This API allows seamless product browsing, adding to favorites, and managing user roles, all while ensuring secure payment processing and order tracking.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel</span>
+            <span class="tech-pill text-xs">JWT Authentication</span>
+            <span class="tech-pill text-xs">Stripe</span>
+            <span class="tech-pill text-xs">API</span>
+            <span class="tech-pill text-xs">Role Management</span>
+            <span class="tech-pill text-xs">E-Commerce</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="https://github.com/abdallahkhattab/ecommerce-api" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/ecommerce-api
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- project 9-->
+
+<div class="block project-block">
+    <div class="relative">
+        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
+            <!-- Lock SVG Icon to represent Authentication/Security -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-20 h-20 text-yellow-400">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m6 4H6a2 2 0 01-2-2v-7a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2zm-6-9a2 2 0 01-2-2V7a4 4 0 118 0v3a2 2 0 01-2 2H12z" />
+            </svg>
+        </div>
+        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
+            <i class="fas fa-check mr-2"></i> Live
+        </div>
+    </div>
+    <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3 text-white">🔐 Laravel Passport Authentication API</h3>
+        <p class="text-gray-300 mb-6 text-base">
+            A fully-featured API authentication system built with <strong>Laravel 12</strong> and <strong>Laravel Passport</strong>. This secure API includes user registration, two-factor login with OTP, password reset, login history tracking, and more.
+        </p>
+        <ul class="list-disc pl-5 text-gray-300 mb-6 text-sm">
+            <li>User Registration with email validation</li>
+            <li>Login with OTP-based Two-Factor Authentication</li>
+            <li>Account lockout on too many failed attempts</li>
+            <li>Password reset via email</li>
+            <li>Password history checks (no reuse of last 5)</li>
+            <li>Force password change every 90 days</li>
+            <li>Laravel Passport for secure API token authentication</li>
+            <li>User login activity logs and status tracking</li>
+            <li>Event-based user activity logging</li>
+        </ul>
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="tech-pill text-xs">Laravel 12</span>
+            <span class="tech-pill text-xs">Laravel Passport</span>
+            <span class="tech-pill text-xs">MySQL</span>
+            <span class="tech-pill text-xs">2FA</span>
+            <span class="tech-pill text-xs">JWT</span>
+            <span class="tech-pill text-xs">Security</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
+            <a href="" 
+               target="_blank" 
+               class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">
+               View Project
+            </a>
+            <span class="text-gray-400 text-sm">
+                <i class="fas fa-link mr-2"></i> 
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+            </div>
+            <div class="text-center mt-16">
+                <!--
+                
+                <a href="#" class="inline-flex items-center bg-gray-900 border-2 border-gray-700 rounded-full px-8 py-4 text-lg font-semibold text-white hover:bg-gray-800 hover:border-cyan-500 transition duration-300">
+                    View All Projects
+                  
+                </a>
+                -->
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 md:py-28 bg-gradient-to-b from-gray-900 to-indigo-900 text-white relative overflow-hidden">
+        <canvas id="skills-canvas"></canvas>
+        <div class="container mx-auto px-4 z-10 relative">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 tracking-tight">Core Competencies</h2>
+            <div class="w-24 h-1 bg-amber-500 mx-auto mb-8 rounded-full"></div>
+            <p class="text-center text-gray-300 mb-16 max-w-3xl mx-auto text-lg leading-relaxed">
+                Expert proficiency in Laravel backend development, complemented by pioneering blockchain integration for next-generation digital solutions.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Laravel Skills -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-laravel text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Framework Architecture</h3>
+                    <p class="skill-description">Designing enterprise-grade Laravel applications with advanced MVC patterns for scalability and maintainability.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">API Development</h3>
+                    <p class="skill-description">Crafting robust RESTful APIs with Laravel for seamless integration and high performance.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Database Optimization</h3>
+                    <p class="skill-description">Implementing advanced query optimization and indexing for high-throughput applications.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Authentication Systems</h3>
+                    <p class="skill-description">Building secure authentication systems with Laravel Sanctum and Passport, including MFA.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-vial text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Testing Frameworks</h3>
+                    <p class="skill-description">Implementing comprehensive testing with PHPUnit, Laravel Dusk, and CI workflows.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <!-- Blockchain Skills -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-ethereum text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Smart Contracts</h3>
+                    <p class="skill-description">Developing secure, gas-optimized Solidity smart contracts for blockchain applications.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-link text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Web3 Integration</h3>
+                    <p class="skill-description">Connecting Laravel backends with Web3.js and ethers.js for blockchain interactions.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-hdd text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Decentralized Storage</h3>
+                    <p class="skill-description">Implementing IPFS and Filecoin for distributed content storage in web applications.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-check-circle text-2xl text-white"></i>
+                    </div>
+                    <h3 class="skill-title">Transaction Verification</h3>
+                    <p class="skill-description">Building robust verification systems for blockchain transactions with cryptographic protocols.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold mb-12 text-center">Technology Stack</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 justify-items-center">
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-php text-indigo-600 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">PHP</span>
+                    </div>
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-laravel text-red-600 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">Laravel</span>
+                    </div>
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-database text-yellow-500 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">MySQL</span>
+                    </div>
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-ethereum text-purple-600 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">Ethereum</span>
+                    </div>
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-js text-yellow-500 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">JavaScript</span>
+                    </div>
+                    <div class="tech-stack-item">
+                        <div class="tech-icon">
+                            <i class="fab fa-vuejs text-green-500 text-3xl"></i>
+                        </div>
+                        <span class="tech-label">Vue.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-28 bg-gradient-to-b from-indigo-900 to-gray-900 text-white">
+        <div class="container mx-auto px-4 z-10 relative">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Get in Touch</h2>
+            <form>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8"></h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                         
+                          
+                        </div>
+                        <div class="flex items-start">
+                          
+                        </div>
+                        <div class="flex items-start">
+                       
+                            <!--
+                           
+                            <div>
+                                <h4 class="font-bold text-lg">Availability</h4>
+                                <p class="text-gray-300 text-base">Open to freelance and full-time opportunities</p>
+                            </div>
+                             -->
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <h4 class="font-bold text-lg mb-4">Connect with Me</h4>
+                        <div class="flex space-x-6">
+                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-medium-m text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-2xl">
+                        <h3 class="text-3xl font-bold mb-8 text-white">Send a Message</h3>
+                        <form   action="https://formspree.io/f/mwporllr" method="POST">
+                            <div class="mb-6">
+                                <label class="block text-gray-300 text-sm font-bold mb-2" for="name">
+                                    Your Name
+                                </label>
+                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="name" type="text" placeholder="John Doe">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-300 text-sm font-bold mb-2" for="email">
+                                    Your Email
+                                </label>
+                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="email" type="email" placeholder="john@example.com">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-300 text-sm font-bold mb-2" for="subject">
+                                    Subject
+                                </label>
+                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="subject" type="text" placeholder="Project Inquiry">
+                            </div>
+                            <div class="mb-8">
+                                <label class="block text-gray-300 text-sm font-bold mb-2" for="message">
+                                    Message
+                                </label>
+                                <textarea class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300 h-40" id="message" placeholder="Your message here..."></textarea>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <button type="submit" class="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-600 hover:to-amber-600 text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline transition duration-300 w-full text-lg" type="button">
+                                    Send Message
+                                </button>
+                            </div>
+                            <div class="mt-6 flex items-center text-sm text-gray-400">
+                                <i class="fas fa-lock mr-3"></i>
+                                <span>Your information is secure</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            </form>
+          
+        </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10">
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-3xl font-bold text-white">Abdallah<span class="text-amber-500">Khattab</span></div>
+                    <p class="text-base mt-2">Laravel & Blockchain Developer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/abdallahkhattab" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/abdallah-khattab-73081b2b7" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-base">© 2025 Abdallah Khattab. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-sm bg-gray-800 px-3 py-2 rounded-full">
+                        <i class="fas fa-code mr-2"></i> Built with Passion
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburger = this;
+            mobileMenu.classList.toggle('hidden');
+            hamburger.classList.toggle('open');
+            if (!mobileMenu.classList.contains('hidden')) {
+                anime({
+                    targets: '.mobile-nav-link',
+                    translateX: [50, 0],
+                    opacity: [0, 1],
+                    delay: anime.stagger(100),
+                    easing: 'easeOutQuad'
+                });
+            }
+        });
+
+        // Custom cursor and trail effect
+        const cursor = document.getElementById('custom-cursor');
+        const trails = [];
+        const trailLength = 8;
+        for (let i = 0; i < trailLength; i++) {
+            const div = document.createElement('div');
+            div.className = 'cursor-trail';
+            document.body.appendChild(div);
+            trails.push(div);
+        }
+        let trailIndex = 0;
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            const trailDot = trails[trailIndex];
+            trailDot.style.left = `${e.clientX}px`;
+            trailDot.style.top = `${e.clientY}px`;
+            trailDot.style.opacity = 0.6;
+            trailDot.style.transform = `scale(${1 - trailIndex / trailLength}) translate(-50%, -50%)`;
+            trailIndex = (trailIndex + 1) % trailLength;
+            trails.forEach((dot, i) => {
+                if (i !== trailIndex) {
+                    dot.style.opacity = Math.max(0, dot.style.opacity - 0.1);
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations and effects on load
+        window.addEventListener('load', function() {
+            // Navbar animation
+            anime({
+                targets: '.navbar',
+                opacity: [0, 1],
+                translateY: [-50, 0],
+                duration: 1000,
+                easing: 'easeOutQuad',
+                delay: 500
+            });
+
+    // Typed.js for hero section
+    new Typed('#typed-text', {
+    strings: ['Laravel Developer', 'API Specialist', 'Database Optimizer', 'Blockchain Innovator'],
+    typeSpeed: 100,
+    backSpeed: 50,
+    backDelay: 1500,
+    loop: true,
+    showCursor: false
+});
+
+            // Setup scroll-based animations
+            setupScrollAnimations();
+        });
+
+        // Hero section canvas (blockchain-inspired hexagonal network)
+        function initBlockchainCanvas() {
+            const canvas = document.getElementById('blockchain-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+            // Create hexagonal geometry for nodes
+            const hexGeometry = new THREE.CircleGeometry(0.4, 6); // Hexagon approximation
+            const nodes = [];
+            const lines = [];
+            const nodeCount = 50;
+
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const material = new THREE.MeshBasicMaterial({
+                    color: i % 3 === 0 ? 0x2dd4bf : i % 3 === 1 ? 0xf59e0b : 0xd946ef,
+                    transparent: true,
+                    opacity: 0.9
+                });
+                const node = new THREE.Mesh(hexGeometry, material);
+                node.position.x = (Math.random() - 0.5) * 50;
+                node.position.y = (Math.random() - 0.5) * 50;
+                node.position.z = (Math.random() - 0.5) * 50;
+                node.userData = { velocity: new THREE.Vector3((Math.random() - 0.5) * 0.05, (Math.random() - 0.5) * 0.05, (Math.random() - 0.5) * 0.05) };
+                scene.add(node);
+                nodes.push(node);
+            }
+
+            // Update lines dynamically
+            function updateLines() {
+                lines.forEach(line => scene.remove(line));
+                lines.length = 0;
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const distance = nodes[i].position.distanceTo(nodes[j].position);
+                        if (distance < 15) {
+                            const lineMaterial = new THREE.LineBasicMaterial({
+                                color: 0x2dd4bf,
+                                transparent: true,
+                                opacity: 0.4 * (1 - distance / 15)
+                            });
+                            const points = [nodes[i].position, nodes[j].position];
+                            const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                            const line = new THREE.Line(lineGeometry, lineMaterial);
+                            scene.add(line);
+                            lines.push(line);
+                        }
+                    }
+                }
+            }
+
+            camera.position.z = 30;
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                nodes.forEach(node => {
+                    node.position.add(node.userData.velocity);
+                    if (Math.abs(node.position.x) > 25) node.userData.velocity.x *= -0.9;
+                    if (Math.abs(node.position.y) > 25) node.userData.velocity.y *= -0.9;
+                    if (Math.abs(node.position.z) > 25) node.userData.velocity.z *= -0.9;
+                    node.material.opacity = 0.7 + 0.2 * Math.sin(Date.now() * 0.002 + node.position.x);
+                });
+                updateLines();
+                camera.position.x = Math.sin(Date.now() * 0.0002) * 5;
+                camera.position.y = Math.cos(Date.now() * 0.0002) * 5;
+                camera.lookAt(0, 0, 0);
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', function() {
+                renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+                camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+                camera.updateProjectionMatrix();
+            });
+        }
+
+        // Skills section canvas
+        function initSkillsCanvas() {
+            const canvas = document.getElementById('skills-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+            const particles = [];
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                const geometry = new THREE.SphereGeometry(0.1, 16, 16);
+                const material = new THREE.MeshBasicMaterial({
+                    color: i % 2 === 0 ? 0x2dd4bf : 0xf59e0b,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const particle = new THREE.Mesh(geometry, material);
+                particle.position.x = (Math.random() - 0.5) * 50;
+                particle.position.y = (Math.random() - 0.5) * 50;
+                particle.position.z = (Math.random() - 0.5) * 50;
+                scene.add(particle);
+                particles.push(particle);
+            }
+
+            camera.position.z = 30;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                particles.forEach(p => {
+                    p.position.y += 0.01 * Math.sin(Date.now() * 0.003 + p.position.x);
+                    p.position.x += 0.01 * Math.cos(Date.now() * 0.003 + p.position.z);
+                });
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', function() {
+                renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+                camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+                camera.updateProjectionMatrix();
+            });
+        }
+
+        // Animate skill cards and tech stack items
+        function animateSkillCards(section) {
+            const skillCards = section.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                anime({
+                    targets: card,
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    duration: 800,
+                    easing: 'easeOutQuad',
+                    delay: anime.stagger(100),
+                    begin: function() {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+
+                card.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.03,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                });
+                card.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                });
+
+                const progressFill = card.querySelector('.progress-fill');
+                anime({
+                    targets: progressFill,
+                    width: progressFill.getAttribute('style').match(/width:\s*(\d+%)/)[1],
+                    duration: 1500,
+                    easing: 'easeOutQuad',
+                    begin: function() {
+                        progressFill.style.width = progressFill.getAttribute('style').match(/width:\s*(\d+%)/)[1];
+                    }
+                });
+            });
+
+            const techStackItems = section.querySelectorAll('.tech-stack-item');
+            techStackItems.forEach(item => {
+                anime({
+                    targets: item,
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    duration: 800,
+                    easing: 'easeOutQuad',
+                    delay: anime.stagger(100),
+                    begin: function() {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+        }
+
+        // Setup scroll-based animations
+        function setupScrollAnimations() {
+            const sections = document.querySelectorAll('section, #hero');
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px',
+                threshold: 0.1
+            };
+
+            let blockchainCanvasInitialized = false;
+            let skillsCanvasInitialized = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const section = entry.target;
+                        const sectionId = section.getAttribute('id');
+
+                        // Animate section elements
+                        anime({
+                            targets: section.querySelectorAll('h2, h3, p, .block, .skill-card, .tech-stack-item'),
+                            opacity: [0, 1],
+                            translateY: [50, 0],
+                            duration: 1000,
+                            delay: anime.stagger(200),
+                            easing: 'easeOutQuad',
+                            begin: function(anim) {
+                                anim.animatables.forEach(target => {
+                                    target.target.style.opacity = '1';
+                                    target.target.style.transform = 'translateY(0)';
+                                });
+                            }
+                        });
+
+                        // Animate section divider
+                        const divider = section.nextElementSibling;
+                        if (divider && divider.classList.contains('section-divider')) {
+                            anime({
+                                targets: divider,
+                                opacity: [0, 0.5],
+                                scaleX: [0, 1],
+                                duration: 1000,
+                                easing: 'easeOutQuad',
+                                begin: function() {
+                                    divider.style.opacity = '0.5';
+                                    divider.style.transform = 'scaleX(1)';
+                                }
+                            });
+                        }
+
+                        // Initialize canvases and specific animations
+                        if (sectionId === 'hero' && !blockchainCanvasInitialized) {
+                            initBlockchainCanvas();
+                            anime({
+                                targets: '#blockchain-canvas',
+                                opacity: [0, 0.6],
+                                duration: 2000,
+                                easing: 'easeInOutSine',
+                                loop: true,
+                                direction: 'alternate'
+                            });
+                            blockchainCanvasInitialized = true;
+                        } else if (sectionId === 'skills' && !skillsCanvasInitialized) {
+                            initSkillsCanvas();
+                            anime({
+                                targets: '#skills-canvas',
+                                opacity: [0, 0.6],
+                                duration: 2000,
+                                easing: 'easeInOutSine',
+                                loop: true,
+                                direction: 'alternate'
+                            });
+                            animateSkillCards(section);
+                            skillsCanvasInitialized = true;
+                        } else if (sectionId === 'about' || sectionId === 'projects' || sectionId === 'contact') {
+                            // Additional animations for other sections can be added here if needed
+                        }
+
+                        // Unobserve to prevent re-triggering
+                        observer.unobserve(section);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Hover animations for buttons and links
+        document.querySelectorAll('button, .nav-link, .mobile-nav-link, a').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                anime({
+                    targets: this,
+                    scale: 1.05,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+            element.addEventListener('mouseleave', function() {
+                anime({
+                    targets: this,
+                    scale: 1,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
