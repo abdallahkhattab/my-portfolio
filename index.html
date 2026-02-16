@@ -3,1498 +3,1460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdallah Khattab - Laravel & Blockchain Developer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>Abdallah Khattab — Backend Architect & Blockchain Pioneer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Archivo+Black&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff41;
+            --secondary: #ff0080;
+            --accent: #00d9ff;
+            --dark: #0a0e27;
+            --darker: #05070f;
+            --light: #e0e0e0;
+            --border: #1a1f3a;
+        }
+
         body {
-            font-family: 'Cairo', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #0f172a;
-            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-bg {
-            background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%);
+        /* Glitch Effect */
+        .glitch {
             position: relative;
-            overflow: hidden;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            color: var(--primary);
+            text-transform: uppercase;
+            animation: glitch-skew 2s infinite linear alternate-reverse;
         }
 
-        #blockchain-canvas {
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
         }
 
-        .navbar {
-            background: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--secondary);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
         }
 
-        .navbar:hover {
-            border-bottom: 1px solid rgba(45, 212, 191, 0.5);
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--accent);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
         }
 
-        .nav-link {
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 31px, 0); }
+            10% { clip: rect(70px, 9999px, 71px, 0); }
+            20% { clip: rect(42px, 9999px, 16px, 0); }
+            30% { clip: rect(83px, 9999px, 90px, 0); }
+            40% { clip: rect(12px, 9999px, 59px, 0); }
+            50% { clip: rect(55px, 9999px, 29px, 0); }
+            60% { clip: rect(38px, 9999px, 80px, 0); }
+            70% { clip: rect(25px, 9999px, 65px, 0); }
+            80% { clip: rect(67px, 9999px, 22px, 0); }
+            90% { clip: rect(15px, 9999px, 48px, 0); }
+            100% { clip: rect(50px, 9999px, 36px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            10% { clip: rect(20px, 9999px, 75px, 0); }
+            20% { clip: rect(85px, 9999px, 40px, 0); }
+            30% { clip: rect(33px, 9999px, 90px, 0); }
+            40% { clip: rect(52px, 9999px, 18px, 0); }
+            50% { clip: rect(78px, 9999px, 60px, 0); }
+            60% { clip: rect(10px, 9999px, 88px, 0); }
+            70% { clip: rect(45px, 9999px, 25px, 0); }
+            80% { clip: rect(72px, 9999px, 55px, 0); }
+            90% { clip: rect(28px, 9999px, 95px, 0); }
+            100% { clip: rect(60px, 9999px, 12px, 0); }
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            10% { transform: skew(2deg); }
+            20% { transform: skew(-1deg); }
+            30% { transform: skew(3deg); }
+            40% { transform: skew(-2deg); }
+            50% { transform: skew(1deg); }
+            60% { transform: skew(-3deg); }
+            70% { transform: skew(2deg); }
+            80% { transform: skew(-1deg); }
+            90% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            border-bottom: 3px solid var(--primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 700;
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-link:hover::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -5px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #2dd4bf, #f59e0b);
-            transform: scaleX(1);
-            transform-origin: center;
-            transition: transform 0.3s ease;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #2dd4bf, #f59e0b);
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.3s ease;
-        }
-
-        .block {
-            background: #1f2937;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .block:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(45, 212, 191, 0.1);
-        }
-
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .project-block::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -20px;
-            width: 20px;
-            height: 3px;
-            background: linear-gradient(to right, #2dd4bf, #f59e0b);
-            z-index: 10;
-        }
-
-        .project-block:first-child::before {
+        /* Mobile Menu */
+        .mobile-toggle {
             display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
         }
 
-        .tech-pill {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-            border-radius: 20px;
-            padding: 8px 16px;
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            transition: 0.3s;
         }
 
-        .tech-pill:hover {
-            transform: translateY(-4px);
-            background: linear-gradient(to right, #2dd4bf, #f59e0b);
-            color: #1f2937;
-            box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
         }
 
-        .verified-badge {
-            background: linear-gradient(135deg, #2dd4bf 0%, #f59e0b 100%);
-            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.4);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 255, 65, 0.03) 0px,
+                    transparent 1px,
+                    transparent 2px,
+                    rgba(0, 255, 65, 0.03) 3px
+                );
+            pointer-events: none;
+            animation: scan 8s linear infinite;
         }
 
-        .pulse-glow {
-            animation: pulse-glow 2.5s infinite ease-in-out;
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 65, 0.1);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            animation: pulse-glow 2s infinite;
         }
 
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 8px rgba(45, 212, 191, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(45, 212, 191, 0.7); }
-            100% { box-shadow: 0 0 8px rgba(45, 212, 191, 0.3); }
+            0%, 100% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary); }
         }
 
-        .hamburger span {
-            transition: all 0.3s ease;
+        .hero-title {
+            margin-bottom: 1rem;
         }
 
-        .hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+        .subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 700;
         }
 
-        .hamburger.open span:nth-child(2) {
+        .hero-description {
+            max-width: 700px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: rgba(224, 224, 224, 0.8);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 3px solid;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        /* Code Terminal */
+        .code-terminal {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            position: relative;
+            max-width: 800px;
+        }
+
+        .code-terminal::before {
+            content: '> SYSTEM.INIT';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--dark);
+            padding: 0 10px;
+            color: var(--primary);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .code-line {
+            margin: 0.5rem 0;
             opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
 
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        .code-line:nth-child(1) { animation-delay: 0.1s; }
+        .code-line:nth-child(2) { animation-delay: 0.3s; }
+        .code-line:nth-child(3) { animation-delay: 0.5s; }
+        .code-line:nth-child(4) { animation-delay: 0.7s; }
+        .code-line:nth-child(5) { animation-delay: 0.9s; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .code-comment {
+            color: #666;
+        }
+
+        .code-keyword {
+            color: var(--secondary);
+        }
+
+        .code-string {
+            color: var(--primary);
+        }
+
+        .code-function {
+            color: var(--accent);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(224, 224, 224, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--darker);
+        }
+
+        .about-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.5s;
+        }
+
+        .image-frame:hover img {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 400% 400%;
+            animation: gradient-rotate 8s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradient-rotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .about-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(224, 224, 224, 0.8);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            border: 2px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--dark);
+        }
+
+        .projects-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-label {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary);
+            color: var(--dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(224, 224, 224, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech span {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--darker);
+        }
+
+        .skills-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            border-top: 4px solid var(--primary);
             padding: 2rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--secondary);
+            transition: width 0.3s;
         }
 
         .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: #2dd4bf;
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .skill-card:hover::after {
+            width: 100%;
         }
 
         .skill-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #2dd4bf, #f59e0b);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: scale(1.2);
-        }
-
-        .skill-title {
-            font-size: 1.75rem;
-            color: #ffffff;
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 1rem;
-            text-align: center;
+        }
+
+        .skill-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            color: var(--light);
+            margin-bottom: 0.5rem;
         }
 
         .skill-description {
-            font-size: 1rem;
-            color: #d1d5db;
+            font-size: 0.9rem;
+            color: rgba(224, 224, 224, 0.6);
             line-height: 1.6;
-            text-align: center;
+            margin-bottom: 1rem;
         }
 
-        .progress-bar {
-            height: 8px;
-            background: #374151;
-            border-radius: 4px;
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
             overflow: hidden;
-            margin-top: 1.5rem;
         }
 
-        .progress-fill {
+        .skill-bar-fill {
             height: 100%;
-            background: linear-gradient(to right, #2dd4bf, #f59e0b);
-            transition: width 1.5s ease-in-out;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 1s ease-out;
         }
 
-        .tech-stack-item {
+        .skill-percentage {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+        }
+
+        .contact-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.05rem;
+            color: rgba(224, 224, 224, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
             display: flex;
             flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
             align-items: center;
-            transition: all 0.3s ease;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--primary);
         }
 
-        .tech-stack-item:hover {
-            transform: translateY(-5px);
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 30px;
         }
 
-        .tech-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 50%;
+        .contact-item a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
         }
 
-        .tech-stack-item:hover .tech-icon {
-            background: linear-gradient(135deg, #2dd4bf, #f59e0b);
-            box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
         }
 
-        .tech-label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #e2e8f0;
+        .contact-form {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--border);
+            color: var(--light);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary);
+            border: none;
+            color: var(--dark);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            border-top: 3px solid var(--primary);
+            padding: 3rem 2rem;
             text-align: center;
         }
 
-        .section-divider {
-            background: linear-gradient(to right, transparent, #2dd4bf, #f59e0b, transparent);
-            height: 2px;
-            margin: 2rem 0;
-            opacity: 0.5;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .custom-cursor {
+        .footer-text {
+            color: rgba(224, 224, 224, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-text a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
             position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.5), transparent);
-            border-radius: 50%;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             z-index: 9999;
-            transform: translate(-50%, -50%);
+            transition: width 0.1s;
         }
 
-        .cursor-trail {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.3), transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-        }
-
-        /* Remove initial hidden state for animatable elements */
-        section h2, section h3, section p, .block, .skill-card, .tech-stack-item {
-            opacity: 1;
-            transform: none;
-        }
-
-        /* Set progress bars to their final width */
-        .progress-fill {
-            width: inherit;
-        }
-
-        /* Mobile optimizations */
+        /* Responsive */
         @media (max-width: 768px) {
-            .custom-cursor, .cursor-trail {
-                display: none; /* Disable custom cursor on mobile */
+            .nav-links {
+                display: none;
             }
 
-            .block:hover, .skill-card:hover, .tech-stack-item:hover {
-                transform: none; /* Disable hover transformations on mobile */
+            .mobile-toggle {
+                display: flex;
             }
 
-            .navbar {
-                backdrop-filter: none; /* Reduce resource usage */
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
 
-            #blockchain-canvas {
-                display: none; /* Disable blockchain canvas on mobile */
+            .stat-grid {
+                grid-template-columns: 1fr;
             }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-text">LOADING...</div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
 
     <!-- Navigation -->
-    <nav class="navbar fixed w-full z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <div class="text-3xl font-bold text-white">AK<span class="text-amber-500">.</span></div>
-                </div>
-                <div class="hidden md:flex items-center space-x-12">
-                    <a href="#about" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">About</a>
-                    <a href="#projects" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">Projects</a>
-                    <a href="#skills" class="nav-link text-gray-200 hover:text-amber-500 text-lg font-medium transition duration-300">Skills</a>
-                    <a href="#contact" class="bg-gradient-to-r from-cyan-500 to-amber-500 text-white px-6 py-2 rounded-full hover:from-cyan-600 hover:to-amber-600 transition duration-300 font-medium">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-200 hover:text-amber-500 focus:outline-none hamburger">
-                        <span class="block w-6 h-0.5 bg-gray-200 mb-1.5"></span>
-                        <span class="block w-6 h-0.5 bg-gray-200 mb-1.5"></span>
-                        <span class="block w-6 h-0.5 bg-gray-200"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95 backdrop-filter blur-md border-t border-gray-800">
-            <div class="container mx-auto px-4 py-4 space-y-4">
-                <a href="#about" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">About</a>
-                <a href="#projects" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Projects</a>
-                <a href="#skills" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Skills</a>
-                <a href="#contact" class="mobile-nav-link block py-2 text-gray-200 hover:text-amber-500 text-lg font-medium">Contact</a>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AK_DEV</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="hero" class="hero-bg relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
-        <canvas id="blockchain-canvas"></canvas>
-        <div class="container mx-auto px-4 z-10 relative">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <span class="text-cyan-400 font-semibold uppercase tracking-widest text-white">Web Developer</span>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-3 mb-6">Abdallah Khattab</h1>
-                    <div class="h-12">
-                        <span id="typed-text" class="text-xl md:text-2xl text-gray-300"></span>
-                        <span class="typed-cursor">|</span>
-                    </div>
-                    <p class="text-gray-300 my-8 max-w-xl mx-auto md:mx-0 text-lg">Crafting scalable web solutions with Laravel, powered by cutting-edge blockchain technology.</p>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mt-10">
-                        <a href="#projects" class="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-600 hover:to-amber-600 text-white px-10 py-4 rounded-full font-medium transition duration-300 text-center text-lg">
-                            Explore My Work
-                        </a>
-                       <!-- https://drive.google.com/file/d/1eyFJpcBuyMrX3sKq6xXRD1oOoe0plECq/view?usp=sharing --> 
-                        <a href="https://drive.google.com/file/d/1cldjV1P3360MBO7dwmeKcz1z0-nl9lu6/view?usp=sharing" target="_blank" class="border-2 border-white text-white px-10 py-4 rounded-full font-medium hover:bg-white hover:text-indigo-900 transition duration-300 text-center text-lg">
-                            Resume
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
-                    <div class="relative">
-                        <div class="blockchain-node absolute w-20 h-20 bg-cyan-500 rounded-full opacity-25 -top-10 left-16 pulse-glow"></div>
-                        <div class="blockchain-node absolute w-28 h-28 bg-amber-500 rounded-full opacity-25 top-24 -left-16 pulse-glow"></div>
-                        <div class="blockchain-node absolute w-24 h-24 bg-purple-500 rounded-full opacity-25 -bottom-10 right-16 pulse-glow"></div>
-                        <div class="bg-gray-900 p-6 rounded-xl shadow-2xl z-10 relative">
-                            <div class="flex items-center space-x-3 border-b border-gray-700 pb-3 mb-4">
-                                <div class="w-4 h-4 rounded-full bg-red-500"></div>
-                                <div class="w-4 h-4 rounded-full bg-yellow-500"></div>
-                                <div class="w-4 h-4 rounded-full bg-green-500"></div>
-                                <div class="text-sm text-gray-400 ml-3">api-controller.php</div>
-                            </div>
-                            <pre class="text-xs md:text-sm text-gray-300 overflow-x-auto p-4 bg-gray-800 rounded-lg"><code>namespace App\Http\Controllers;
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">// BACKEND ARCHITECT</div>
+            <h1 class="hero-title">
+                <div class="glitch" data-text="ABDALLAH">ABDALLAH</div>
+                <div class="glitch" data-text="KHATTAB">KHATTAB</div>
+            </h1>
+            <p class="subtitle">Laravel Expert × Blockchain Pioneer × API Architect</p>
+            <p class="hero-description">
+                Transforming complex business logic into elegant, scalable backend systems. 
+                Specialized in Laravel architecture, blockchain integration, and high-performance API development. 
+                Building the invisible infrastructure that powers exceptional digital experiences.
+            </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://drive.google.com/file/d/1cldjV1P3360MBO7dwmeKcz1z0-nl9lu6/view?usp=sharing" target="_blank" class="btn btn-secondary">Download CV</a>
+            </div>
 
-use Illuminate\Http\Request;
-use App\Services\ApiService;
-
-class ApiController extends Controller
-{
-    protected $apiService;
-    
-    public function __construct(ApiService $apiService)
-    {
-        $this->apiService = $apiService;
-    }
-    
-    public function getUserData(Request $request)
-    {
-        $data = $this->apiService->fetchUserData($request->user());
-        return response()->json($data, 200);
-    }
-}</code></pre>
-                        </div>
-                    </div>
-                </div>
+            <div class="code-terminal">
+                <div class="code-line"><span class="code-keyword">class</span> <span class="code-function">Developer</span> {</div>
+                <div class="code-line">    <span class="code-keyword">public</span> <span class="code-function">function</span> __construct() {</div>
+                <div class="code-line">        $this->expertise = [<span class="code-string">'Laravel'</span>, <span class="code-string">'Blockchain'</span>, <span class="code-string">'API Design'</span>];</div>
+                <div class="code-line">        $this->passion = <span class="code-string">'Building scalable systems'</span>;</div>
+                <div class="code-line">    }</div>
+                <div class="code-line">}</div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-gray-900"></div>
-    </header>
-    <div class="section-divider"></div>
+    </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 md:py-28 bg-gray-800">
-        <div class="container mx-auto px-4 z-10 relative">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Image Section -->
-<div class="md:w-2/5 mb-20 md:mb-0 self-start">
-    <div class="relative group w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
-        <img 
-            src="assets/mypicture/me.jpg" 
-            alt="Abdallah Khattab" 
-            class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500 ease-in-out"
-            style="filter: grayscale(100%);"
-            onmouseover="this.style.filter='grayscale(0%)'"
-            onmouseout="this.style.filter='grayscale(100%)'"
-        />
-    </div>
+    <section class="about" id="about">
+        <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Backend developer who turns ideas into reality</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="image-frame">
+                    <img src="assets/mypicture/me.jpg" alt="Abdallah Khattab">
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Backend Developer & System Architect</h3>
+                <p>
+                    I'm a backend developer who enjoys turning ideas into real applications using Laravel and modern web tools. 
+                    I've built everything from full-featured admin dashboards to a real-time Instagram-style SPA and an NFT marketplace powered by smart contracts.
+                </p>
+                <p>
+                    I'm constantly learning, building, and exploring — because for me, there's no ceiling to growth. 
+                    Development isn't just a job — it's a craft I'm always working to master.
+                </p>
 
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Experience</div>
+                        <div class="stat-value">2+ Years</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Location</div>
+                        <div class="stat-value">Egypt</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Projects</div>
+                        <div class="stat-value">15+ Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Specialization</div>
+                        <div class="stat-value">Laravel & Web3</div>
+                    </div>
                 </div>
 
-                <!-- Text Section -->
-                 <div class="md:w-3/5 md:pl-16">
-    <h3 class="text-3xl font-bold mb-6 text-white">Laravel Backend Developer</h3>
-    <p class="text-gray-300 mb-8 text-lg leading-relaxed">
-        I'm a backend developer who enjoys turning ideas into real applications using Laravel and modern web tools.
-        I’ve built everything from full-featured admin dashboards to a real-time Instagram-style SPA and an NFT marketplace powered by smart contracts.
-        <br><br>
-        I’m constantly learning, building, and exploring — because for me, there’s no ceiling to growth. Development isn’t just a job — it’s a craft I’m always working to master.
-    </p>
-
-    <!-- Info Grid -->
-    <div class="grid grid-cols-2 gap-6 mb-10">
-        <div class="flex items-center">
-            <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
-            <span class="font-semibold text-white">Based in</span>
-            <span class="ml-3 text-gray-300">Egypt</span>
-        </div>
-        <div class="flex items-center">
-            <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
-            <span class="font-semibold text-white">Experience</span>
-            <span class="ml-3 text-gray-300">2+ Years</span>
-        </div>
-        <div class="flex items-center">
-            <div class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></div>
-            <span class="font-semibold text-white">Languages</span>
-            <span class="ml-3 text-gray-300">PHP, JavaScript, Solidity</span>
-        </div>
-    </div>
-
-    <!-- Tech Stack Pills -->
-    <div class="flex flex-wrap gap-3 mb-10">
-        <span class="tech-pill text-sm font-medium">Laravel</span>
-        <span class="tech-pill text-sm font-medium">API Development</span>
-        <span class="tech-pill text-sm font-medium">MySQL</span>
-        <span class="tech-pill text-sm font-medium">Blockchain</span>
-        <span class="tech-pill text-sm font-medium">Web3.js</span>
-        <span class="tech-pill text-sm font-medium">Tailwind CSS</span>
-    </div>
-
-    <!-- Social Links -->
-    <div class="flex space-x-6">
-        <a href="https://github.com/abdallahkhattab" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
-            <i class="fab fa-github text-2xl"></i>
-        </a>
-        <a href="https://linkedin.com/in/abdallah-khattab-73081b2b7" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
-            <i class="fab fa-linkedin text-2xl"></i>
-        </a>
-        <a href="#" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
-            <i class="fab fa-twitter text-2xl"></i>
-        </a>
-        <a href="#" class="text-gray-300 hover:text-cyan-500 transition duration-300 transform hover:scale-110">
-            <i class="fas fa-envelope text-2xl"></i>
-        </a>
-    </div>
-</div>
-
-            
+                <div class="tech-tags">
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">API Development</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Blockchain</span>
+                    <span class="tech-tag">Web3.js</span>
+                    <span class="tech-tag">Solidity</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                </div>
             </div>
         </div>
     </section>
-    <div class="section-divider"></div>
-
-    
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 md:py-28">
-        <div class="container mx-auto px-4 z-10 relative">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">Featured Projects</h2>
-            <div class="flex items-center justify-center mb-16">
-                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
-                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
-                <div class="w-6 h-6 bg-amber-500 rounded-full mx-2 blockchain-node pulse-glow"></div>
-                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
-                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
-                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
-                <div class="w-6 h-6 bg-amber-500 rounded-full mx-2 blockchain-node pulse-glow"></div>
-                <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-amber-500"></div>
-                <div class="w-4 h-4 bg-cyan-500 rounded-full pulse-glow"></div>
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <h2 class="section-title">Featured Work</h2>
+            <p class="section-subtitle">Real-world projects showcasing technical excellence</p>
+        </div>
+        <div class="projects-grid">
+            <!-- Instagram Clone -->
+            <div class="project-card">
+                <img src="assets/projects/Instagram-Clone.png" alt="Instagram Clone" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">LIVE</span>
+                    <h3 class="project-title">Instagram Clone SPA</h3>
+                    <p class="project-description">
+                        Full-featured social media platform with real-time messaging, stories, notifications, and complete user interaction system built with Vue.js 3 and Laravel.
+                    </p>
+                    <div class="project-tech">
+                        <span>Vue.js 3</span>
+                        <span>Laravel</span>
+                        <span>Inertia.js</span>
+                        <span>WebSockets</span>
+                        <span>Real-time</span>
+                    </div>
+                    <a href="https://nawasrah.site/instagram/login" target="_blank" class="project-link">
+                        View Live <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
 
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <div class="block project-block">
-    <div class="relative">
-        <img src="assets/projects/Instagram-Clone.png" alt="Instagram Clone" class="w-full h-56 object-cover rounded-t-xl" />
-        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Live
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">Instagram Clone SPA</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            A full-featured Instagram clone built as a Single Page Application using Vue.js 3, Inertia.js, and Laravel. Features real-time messaging, stories, notifications, and a complete social media experience with modern web technologies.
-        </p>
-        
-        <!-- Key Features Section -->
-        <div class="mb-6">
-            <h4 class="text-lg font-semibold text-white mb-3">Key Features:</h4>
-            <ul class="text-gray-300 text-sm space-y-2">
-                <li>• Complete user authentication system (Register/Login)</li>
-                <li>• Full CRUD operations for posts with image uploads</li>
-                <li>• Stories feature with 24-hour auto-deletion</li>
-                <li>• Real-time messaging system using Laravel WebSockets</li>
-                <li>• Follow/Unfollow system with user suggestions</li>
-                <li>• Like and comment functionality on posts</li>
-                <li>• Explore page with trending posts</li>
-                <li>• Advanced search for posts and users</li>
-                <li>• Real-time notifications system</li>
-                <li>• Profile management and editing</li>
-                <li>• Scheduled commands for automated story cleanup</li>
-            </ul>
-        </div>
-
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs">Vue.js 3</span>
-            <span class="tech-pill text-xs">Laravel</span>
-            <span class="tech-pill text-xs">Inertia.js</span>
-            <span class="tech-pill text-xs">SPA</span>
-            <span class="tech-pill text-xs">WebSockets</span>
-            <span class="tech-pill text-xs">Real-time Chat</span>
-            <span class="tech-pill text-xs">Stories</span>
-            <span class="tech-pill text-xs">Notifications</span>
-        </div>
-        
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="https://nawasrah.site/instagram/login" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i> https://nawasrah.site/instagram/login
-            </span>
-        </div>
-    </div>
-</div>
-
-    <!-- Project 2 -->  
-   <!-- Project 2 -->
-      <div class="block project-block">
-    <div class="relative">
-        <img src="assets/projects/NFT.png" alt="NFT Marketplace" class="w-full h-56 object-cover rounded-t-xl" />
-        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Verified
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">NFT Marketplace</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            A Laravel-based NFT marketplace integrated with smart contracts for minting, trading, and selling digital assets. Powered by Solidity for smart contract development, Web3.js for blockchain interaction, and MetaMask for secure user authentication. Utilizes Hardhat for testing, Alchemy for blockchain connectivity, and Pinata for IPFS file storage, with a 2% commission for contractors on transactions.
-        </p>
-        <a href="https://sepolia.etherscan.io/address/0x636937bac8A853767CF2422D4eDcCd2CC9e190d0#code" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline">
-            Click to see the NFTMarketplace contract on Etherscan (Sepolia)
-        </a>
-        <div class="mb-6">
-            <h4 class="text-lg font-semibold text-white mb-3">Key Features:</h4>
-            <ul class="text-gray-300 text-sm space-y-2">
-                <li>• Secure user authentication via MetaMask wallet integration</li>
-                <li>• User profile creation and management with customizable settings</li>
-                <li>• NFT minting with ERC-721 compliant smart contracts</li>
-                <li>• Trading and selling NFTs with real-time transaction processing</li>
-                <li>• 2% commission for contractors on each NFT sale</li>
-                <li>• Smart contract deployment and testing with Hardhat</li>
-                <li>• IPFS storage for NFT metadata using Pinata</li>
-                <li>• Blockchain interaction via Web3.js and Alchemy</li>
-                <li>• Responsive UI for browsing, searching, and managing NFTs</li>
-            </ul>
-        </div>
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs">Laravel</span>
-            <span class="tech-pill text-xs">Smart Contracts</span>
-            <span class="tech-pill text-xs">IPFS (Pinata)</span>
-            <span class="tech-pill text-xs">ERC-721</span>
-            <span class="tech-pill text-xs">Solidity</span>
-            <span class="tech-pill text-xs">Web3.js</span>
-            <span class="tech-pill text-xs">MetaMask</span>
-            <span class="tech-pill text-xs">Hardhat</span>
-            <span class="tech-pill text-xs">Alchemy</span>
-        </div>
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="https://www.youtube.com/watch?v=2gzDGYa-GoE&t" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i> 0x7c2...9d1b
-            </span>
-        </div>
-    </div>
-</div>
-
-
-                <!-- Project 1 -->
-              <div class="block project-block">
-    <div class="relative">
-        <img src="assets/projects/mediumClone.png" alt="Medium Clone" class="w-full h-56 object-cover rounded-t-xl" />
-        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Live
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">Medium Clone Project</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            A Laravel-based Medium clone with real-time chat and notifications powered by Pusher. Built with Tailwind CSS, Alpine.js, and Laravel for a seamless user experience, featuring user profiles, post management, and interactive social features.
-        </p>
-        <div class="mb-6">
-            <h4 class="text-lg font-semibold text-white mb-3">Key Features:</h4>
-            <ul class="text-gray-300 text-sm space-y-2">
-                <li>• User registration with email verification and secure login/logout</li>
-                <li>• Public user profiles with editable bio, avatar, and settings</li>
-                <li>• Follow and unfollow system for connecting with other users</li>
-                <li>• Create, edit, and delete posts with category-based filtering</li>
-                <li>• Search functionality for posts and users</li>
-                <li>• Comment on posts with nested replies and clap system (like Medium’s applause)</li>
-                <li>• Real-time notifications for claps, comments, replies, follows, and messages</li>
-                <li>• One-on-one real-time chat system powered by Pusher</li>
-                <li>• In-app notification dropdown with real-time alerts</li>
-            </ul>
-        </div>
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs">Laravel</span>
-            <span class="tech-pill text-xs">Alpine.js</span>
-            <span class="tech-pill text-xs">Tailwind CSS</span>
-            <span class="tech-pill text-xs">Pusher</span>
-            <span class="tech-pill text-xs">Real-time Notifications</span>
-            <span class="tech-pill text-xs">Chat Feature</span>
-        </div>
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="http://nawasrah.site/medium" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i> http://nawasrah.site/medium
-            </span>
-        </div>
-    </div>
-</div>
-
-    <div class="block project-block">
-    <div class="relative">
-        <img src="assets/projects/jarvix.png" alt="Jarvix - AI Chat App" class="w-full h-56 object-cover rounded-t-xl" />
-        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Live
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">Jarvix - AI Chat App</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            Jarvix is an AI-powered chat application built using Laravel, Vue.js, and Alpine.js, integrating OpenAI's API for dynamic, intelligent conversations. Users can save chats, continue previous conversations, and enjoy a sleek, responsive UI.
-        </p>
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs">Laravel</span>
-            <span class="tech-pill text-xs">Vue.js</span>
-            <span class="tech-pill text-xs">Alpine.js</span>
-            <span class="tech-pill text-xs">Tailwind CSS</span>
-            <span class="tech-pill text-xs">OpenAI API</span>
-            <span class="tech-pill text-xs">Chat Saving</span>
-        </div>
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="https://github.com/abdallahkhattab/Jarvix-AI-Chat-Assistant-Laravel" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/Jarvix-AI-Chat-Assistant-Laravel
-            </span>
-        </div>
-    </div>
-</div>
-
-    <div class="block project-block">
-
-    <div class="relative">
-        <img src="assets/projects/moodsync.png" alt="MoodSync API" class="w-full h-56 object-cover rounded-t-xl" />
-        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Live
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">MoodSync API</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            A mental health API built with Laravel and Sanctum, enabling users to track moods and professionals to monitor crises. Features secure authentication, mood entry management, crisis detection, and admin dashboards with comprehensive documentation using Scribe.
-        </p>
-        
-        <!-- Key Features Section -->
-        <div class="mb-6">
-            <h4 class="text-lg font-semibold text-white mb-3">Key Features:</h4>
-            <ul class="text-gray-300 text-sm space-y-2">
-                <li>• Secure user authentication with Laravel Sanctum (Register/Login)</li>
-                <li>• Mood tracking with daily entries, intensity, and notes</li>
-                <li>• Crisis detection system analyzing inactivity and keywords</li>
-                <li>• Admin endpoints for user oversight and mood analytics</li>
-                <li>• Role-based access control for admin-only features</li>
-                <li>• Personalized mood-based recommendations for users</li>
-                <li>• Interactive API documentation with Scribe’s</li>
-                <li>• Admin note management for user monitoring</li>
-                <li>• Mood entry validation to prevent duplicate submissions</li>
-            </ul>
-        </div>
-
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs">Laravel 12</span>
-            <span class="tech-pill text-xs">Sanctum</span>
-            <span class="tech-pill text-xs">Scribe</span>
-            <span class="tech-pill text-xs">MySQL</span>
-            <span class="tech-pill text-xs">RESTful API</span>
-            <span class="tech-pill text-xs">Crisis Detection</span>
-            <span class="tech-pill text-xs">Mood Tracking</span>
-            <span class="tech-pill text-xs">Admin Dashboard</span>
-        </div>
-        
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="https://nawasrah.site/moodsync" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i> https://nawasrah.site/moodsync
-            </span>
-        </div>
-    </div>
-</div>
-
-
-<div class="block project-block bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-    <div class="relative">
-        <img src="assets/projects/employee_purchase.png" alt="Employee Purchase System" class="w-full h-56 object-cover rounded-t-xl" />
-         <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-            <i class="fas fa-check mr-2"></i> Live
-        </div>
-    </div>
-
-    <div class="p-8">
-        <h3 class="text-2xl font-bold mb-3 text-white">Employee Purchase System</h3>
-        <p class="text-gray-300 mb-6 text-base">
-            A Laravel & Filament-powered platform that automates employee purchases through vending machines. It features real-time card validation, daily balance recharging, RESTful APIs for machine communication, and a robust admin panel for complete system oversight.
-        </p>
-
-
-
-        <!-- Key Features Section -->
-        <div class="mb-6">
-            <h4 class="text-lg font-semibold text-white mb-3">Key Features:</h4>
-            <ul class="text-gray-300 text-sm space-y-2">
-                <li>• Employee profile and classification management</li>
-                <li>• Slot-based vending machine configuration and product linking</li>
-                <li>• RESTful API for real-time purchase and balance validation</li>
-                <li>• Automatic daily balance recharge using scheduled tasks</li>
-                <li>• Purchase limits based on product categories (juices, meals, snacks)</li>
-                <li>• Transaction history with filtering, reporting, and failure tracking</li>
-                <li>• Secure transaction handling with card and product validation</li>
-                <li>• Modern, responsive admin panel using Filament 3</li>
-                <li>• Role-based access control for admins and employees</li>
-            </ul>
-        </div>
-
-        <!-- Technology Tags -->
-        <div class="flex flex-wrap gap-3 mb-6">
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">Laravel 12</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">Filament 3</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">RESTful API</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">MySQL</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">Scheduled Tasks</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">Real-Time Validation</span>
-            <span class="tech-pill text-xs bg-gray-700 text-gray-200 px-3 py-1 rounded-full">Vending Integration</span>
-        </div>
-
-        <!-- Project Link -->
-        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-            <a href="https://nawasrah.site/employees-purchase/" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-            <span class="text-gray-400 text-sm">
-                <i class="fas fa-link mr-2"></i>  https://nawasrah.site/employees-purchase
-            </span>
-        </div>
-    </div>
-</div>
-
-
-
-             
-
-                <!-- Project 3 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <img src="assets/projects/realestate.png" alt="Real Estate Management System" class="w-full h-56 object-cover rounded-t-xl" />
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
+            <!-- NFT Marketplace -->
+            <div class="project-card">
+                <img src="assets/projects/NFT.png" alt="NFT Marketplace" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">BLOCKCHAIN</span>
+                    <h3 class="project-title">NFT Marketplace</h3>
+                    <p class="project-description">
+                        Laravel-based NFT marketplace with smart contract integration for minting, trading digital assets. Features MetaMask authentication and IPFS storage.
+                    </p>
+                    <div class="project-tech">
+                        <span>Laravel</span>
+                        <span>Solidity</span>
+                        <span>Web3.js</span>
+                        <span>IPFS</span>
+                        <span>MetaMask</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">Real Estate Management System</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A Laravel-based real estate management platform with full Dashboard for properties, users, and orders, and a Home page. Built with HTML, CSS, JS, Bootstrap, and Laravel for a seamless experience.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">MySQL</span>
-                            <span class="tech-pill text-xs">Bootstrap</span>
-                            <span class="tech-pill text-xs">HTML</span>
-                            <span class="tech-pill text-xs">CSS</span>
-                            <span class="tech-pill text-xs">JavaScript</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/real-estate" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/real-estate
-                            </span>
-                        </div>
-                    </div>
+                    <a href="https://www.youtube.com/watch?v=2gzDGYa-GoE&t" target="_blank" class="project-link">
+                        View Demo <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Project 4 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <img src="assets/projects/hospital.png" alt="Hospital Management System" class="w-full h-56 object-cover rounded-t-xl" />
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
+            <!-- Medium Clone -->
+            <div class="project-card">
+                <img src="assets/projects/mediumClone.png" alt="Medium Clone" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">LIVE</span>
+                    <h3 class="project-title">Medium Clone</h3>
+                    <p class="project-description">
+                        Publishing platform with real-time chat and notifications powered by Pusher. Complete user profiles, post management, and social features.
+                    </p>
+                    <div class="project-tech">
+                        <span>Laravel</span>
+                        <span>Alpine.js</span>
+                        <span>Pusher</span>
+                        <span>Tailwind</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">Hospital Management System</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A comprehensive Hospital Management System built using Laravel with the repository pattern for managing various aspects like patient records, doctor schedules, laboratory and X-ray departments, and more. Includes a dynamic dashboard for admins and employees.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">MySQL</span>
-                            <span class="tech-pill text-xs">Repository Pattern</span>
-                            <span class="tech-pill text-xs">Dashboard</span>
-                            <span class="tech-pill text-xs">Admin Panel</span>
-                            <span class="tech-pill text-xs">Employee Management</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/Laravel-HospitalMangementSystem" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/Laravel-HospitalMangementSystem
-                            </span>
-                        </div>
-                    </div>
+                    <a href="http://nawasrah.site/medium" target="_blank" class="project-link">
+                        View Live <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Project 5 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <img src="assets/projects/filament.png" alt="E-Commerce Project" class="w-full h-56 object-cover rounded-t-xl" />
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
+            <!-- Jarvix AI -->
+            <div class="project-card">
+                <img src="assets/projects/jarvix.png" alt="Jarvix AI" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">AI</span>
+                    <h3 class="project-title">Jarvix AI Assistant</h3>
+                    <p class="project-description">
+                        AI-powered chat application integrating OpenAI's API for intelligent conversations. Save chats and continue previous conversations seamlessly.
+                    </p>
+                    <div class="project-tech">
+                        <span>Laravel</span>
+                        <span>Vue.js</span>
+                        <span>OpenAI API</span>
+                        <span>Alpine.js</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">E-Commerce Project</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A fully functional E-commerce platform built using Laravel and Filament for the admin panel. It allows admins to manage users, brands, categories, orders, and products. The platform is designed to scale with features like a responsive front end and powerful back-end management.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">Filament</span>
-                            <span class="tech-pill text-xs">MySQL</span>
-                            <span class="tech-pill text-xs">E-commerce</span>
-                            <span class="tech-pill text-xs">Admin Panel</span>
-                            <span class="tech-pill text-xs">Product Management</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/FilamentEcommerce-Laravel" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/FilamentEcommerce-Laravel
-                            </span>
-                        </div>
-                    </div>
+                    <a href="https://github.com/abdallahkhattab/Jarvix-AI-Chat-Assistant-Laravel" target="_blank" class="project-link">
+                        View Code <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Project 6 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <img src="assets/projects/multivendor.png" alt="Multi-Vendor Store" class="w-full h-56 object-cover rounded-t-xl" />
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
+            <!-- MoodSync API -->
+            <div class="project-card">
+                <img src="assets/projects/moodsync.png" alt="MoodSync API" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">API</span>
+                    <h3 class="project-title">MoodSync API</h3>
+                    <p class="project-description">
+                        Mental health tracking API with crisis detection, mood analytics, and role-based access control. Built with Laravel Sanctum and Scribe documentation.
+                    </p>
+                    <div class="project-tech">
+                        <span>Laravel 12</span>
+                        <span>Sanctum</span>
+                        <span>Scribe</span>
+                        <span>RESTful</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">Multi-Vendor Store</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A dynamic Multi-Vendor Store built with Laravel that allows vendors to manage their own products and orders. It features a comprehensive admin dashboard for overall store management, real-time notifications using Pusher, and a full-fledged order management system, product management, and role management for different user roles.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">Pusher</span>
-                            <span class="tech-pill text-xs">MySQL</span>
-                            <span class="tech-pill text-xs">Multi-Vendor</span>
-                            <span class="tech-pill text-xs">Order Management</span>
-                            <span class="tech-pill text-xs">Admin Dashboard</span>
-                            <span class="tech-pill text-xs">Real-time Notifications</span>
-                            <span class="tech-pill text-xs">Role Management</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/multi-vendor-store" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/multi-vendor-store
-                            </span>
-                        </div>
-                    </div>
+                    <a href="https://nawasrah.site/moodsync" target="_blank" class="project-link">
+                        View Docs <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Project 7 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
-                            <!-- Example SVG for Cryptocurrency API -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-24 h-24 text-yellow-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3l2 2 2-2V9m-4 0V6"/>
-                            </svg>
-                        </div>
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
+            <!-- Employee Purchase -->
+            <div class="project-card">
+                <img src="assets/projects/employee_purchase.png" alt="Employee Purchase System" class="project-image">
+                <div class="project-content">
+                    <span class="project-label">ENTERPRISE</span>
+                    <h3 class="project-title">Employee Purchase System</h3>
+                    <p class="project-description">
+                        Automated vending machine integration with real-time validation, daily balance recharge, and comprehensive admin panel using Filament.
+                    </p>
+                    <div class="project-tech">
+                        <span>Laravel 12</span>
+                        <span>Filament 3</span>
+                        <span>RESTful API</span>
+                        <span>Automation</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">Cryptocurrency API</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A robust RESTful API built with Laravel to fetch, manage, and display cryptocurrency data. This project integrates with the CoinGecko API to provide real-time cryptocurrency data, including market prices, historical data, and other key metrics for various cryptocurrencies.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">API</span>
-                            <span class="tech-pill text-xs">RESTful</span>
-                            <span class="tech-pill text-xs">Cryptocurrency</span>
-                            <span class="tech-pill text-xs">CoinGecko API</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/CryptoCurrencyApi-Laravel" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> https://github.com/abdallahkhattab/CryptoCurrencyApi-Laravel
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 8 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
-                            <!-- Example SVG for E-Commerce API -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-24 h-24 text-green-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 9.3V6a4 4 0 10-8 0v12a4 4 0 008 0v-3.3m8 3.3a4 4 0 10-8 0V6a4 4 0 018 0v12z"/>
-                            </svg>
-                        </div>
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">E-Commerce API</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A robust E-Commerce API built with Laravel offering a range of functionalities, including:
-                            <ul class="text-gray-300 text-sm space-y-2">
-                                <li>• Role management for Super Admins, Admins, Sellers, and Editors</li>
-                                <li>• Product management and filtering by price, category, and brand</li>
-                                <li>• JWT authentication for secure login and registration</li>
-                                <li>• Order tracking and payment integration using Stripe</li>
-                                <li>• User favorites and cart management</li>
-                                <li>• Admin can create, edit, or delete users via Artisan commands</li>
-                            </ul>
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel</span>
-                            <span class="tech-pill text-xs">JWT Authentication</span>
-                            <span class="tech-pill text-xs">Stripe</span>
-                            <span class="tech-pill text-xs">API</span>
-                            <span class="tech-pill text-xs">Role Management</span>
-                            <span class="tech-pill text-xs">E-Commerce</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="https://github.com/abdallahkhattab/ecommerce-api" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i> github.com/abdallahkhattab/ecommerce-api
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 9 -->
-                <div class="block project-block">
-                    <div class="relative">
-                        <div class="w-full h-56 flex justify-center items-center bg-gray-800 rounded-t-xl">
-                            <!-- Lock SVG Icon to represent Authentication/Security -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-20 h-20 text-yellow-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m6 4H6a2 2 0 01-2-2v-7a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2zm-6-9a2 2 0 01-2-2V7a4 4 0 118 0v3a2 2 0 01-2 2H12z" />
-                            </svg>
-                        </div>
-                        <div class="absolute top-4 right-4 verified-badge text-white text-sm px-3 py-1 rounded-full">
-                            <i class="fas fa-check mr-2"></i> Live
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3 text-white">🔐 Laravel Passport Authentication API</h3>
-                        <p class="text-gray-300 mb-6 text-base">
-                            A fully-featured API authentication system built with <strong>Laravel 12</strong> and <strong>Laravel Passport</strong>. This secure API includes user registration, two-factor login with OTP, password reset, login history tracking, and more.
-                        </p>
-                        <ul class="list-disc pl-5 text-gray-300 mb-6 text-sm">
-                            <li>User Registration with email validation</li>
-                            <li>Login with OTP-based Two-Factor Authentication</li>
-                            <li>Account lockout on too many failed attempts</li>
-                            <li>Password reset via email</li>
-                            <li>Password history checks (no reuse of last 5)</li>
-                            <li>Force password change every 90 days</li>
-                            <li>Laravel Passport for secure API token authentication</li>
-                            <li>User login activity logs and status tracking</li>
-                            <li>Event-based user activity logging</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3 mb-6">
-                            <span class="tech-pill text-xs">Laravel 12</span>
-                            <span class="tech-pill text-xs">Laravel Passport</span>
-                            <span class="tech-pill text-xs">MySQL</span>
-                            <span class="tech-pill text-xs">2FA</span>
-                            <span class="tech-pill text-xs">JWT</span>
-                            <span class="tech-pill text-xs">Security</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <a href="" target="_blank" class="text-cyan-500 hover:text-cyan-700 font-semibold text-base">View Project</a>
-                            <span class="text-gray-400 text-sm">
-                                <i class="fas fa-link mr-2"></i>
-                            </span>
-                        </div>
-                    </div>
+                    <a href="https://nawasrah.site/employees-purchase/" target="_blank" class="project-link">
+                        View Live <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-    <div class="section-divider"></div>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 md:py-28 bg-gradient-to-b from-gray-900 to-indigo-900 text-white relative overflow-hidden">
-        <div class="container mx-auto px-4 z-10 relative">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 tracking-tight">Core Competencies</h2>
-            <div class="w-24 h-1 bg-amber-500 mx-auto mb-8 rounded-full"></div>
-            <p class="text-center text-gray-300 mb-16 max-w-3xl mx-auto text-lg leading-relaxed">
-                Expert proficiency in Laravel backend development, complemented by pioneering blockchain integration for next-generation digital solutions.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Laravel Skills -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-laravel text-2xl text-white"></i>
+    <section class="skills" id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Core Skills</h2>
+            <p class="section-subtitle">Technical expertise that drives excellence</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fab fa-laravel"></i></div>
+                <div class="skill-name">Laravel Framework</div>
+                <div class="skill-description">Expert in building scalable MVC applications with advanced architecture patterns</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 95%"></div>
                     </div>
-                    <h3 class="skill-title">Framework Architecture</h3>
-                    <p class="skill-description">Designing enterprise-grade Laravel applications with advanced MVC patterns for scalability and maintainability.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">API Development</h3>
-                    <p class="skill-description">Crafting robust RESTful APIs with Laravel for seamless integration and high performance.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-database text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Database Optimization</h3>
-                    <p class="skill-description">Implementing advanced query optimization and indexing for high-throughput applications.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-shield-alt text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Authentication Systems</h3>
-                    <p class="skill-description">Building secure authentication systems with Laravel Sanctum and Passport, including MFA.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-vial text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Testing Frameworks</h3>
-                    <p class="skill-description">Implementing comprehensive testing with PHPUnit, Laravel Dusk, and CI workflows.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 80%"></div>
-                    </div>
-                </div>
-                <!-- Blockchain Skills -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-ethereum text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Smart Contracts</h3>
-                    <p class="skill-description">Developing secure, gas-optimized Solidity smart contracts for blockchain applications.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-link text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Web3 Integration</h3>
-                    <p class="skill-description">Connecting Laravel backends with Web3.js and ethers.js for blockchain interactions.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-hdd text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Decentralized Storage</h3>
-                    <p class="skill-description">Implementing IPFS and Filecoin for distributed content storage in web applications.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-check-circle text-2xl text-white"></i>
-                    </div>
-                    <h3 class="skill-title">Transaction Verification</h3>
-                    <p class="skill-description">Building robust verification systems for blockchain transactions with cryptographic protocols.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 80%"></div>
-                    </div>
+                    <div class="skill-percentage">95%</div>
                 </div>
             </div>
-            <div class="mt-20">
-                <h3 class="text-3xl font-bold mb-12 text-center">Technology Stack</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 justify-items-center">
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-php text-indigo-600 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">PHP</span>
+
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <div class="skill-name">API Development</div>
+                <div class="skill-description">Crafting robust RESTful APIs with comprehensive documentation and security</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 90%"></div>
                     </div>
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-laravel text-red-600 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">Laravel</span>
+                    <div class="skill-percentage">90%</div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <div class="skill-name">Database Design</div>
+                <div class="skill-description">Advanced query optimization and database architecture for high-performance systems</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 85%"></div>
                     </div>
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-database text-yellow-500 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">MySQL</span>
+                    <div class="skill-percentage">85%</div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fab fa-ethereum"></i></div>
+                <div class="skill-name">Smart Contracts</div>
+                <div class="skill-description">Developing secure Solidity contracts for blockchain applications</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 85%"></div>
                     </div>
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-ethereum text-purple-600 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">Ethereum</span>
+                    <div class="skill-percentage">85%</div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="skill-name">Authentication Systems</div>
+                <div class="skill-description">Implementing secure auth with Sanctum, Passport, and multi-factor authentication</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 90%"></div>
                     </div>
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-js text-yellow-500 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">JavaScript</span>
+                    <div class="skill-percentage">90%</div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-link"></i></div>
+                <div class="skill-name">Web3 Integration</div>
+                <div class="skill-description">Connecting backends with Web3.js and ethers.js for blockchain interactions</div>
+                <div class="skill-level">
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 80%"></div>
                     </div>
-                    <div class="tech-stack-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-vuejs text-green-500 text-3xl"></i>
-                        </div>
-                        <span class="tech-label">Vue.js</span>
-                    </div>
+                    <div class="skill-percentage">80%</div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="section-divider"></div>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 md:py-28 bg-gradient-to-b from-indigo-900 to-gray-900 text-white">
-        <div class="container mx-auto px-4 z-10 relative">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Get in Touch</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <div class="mt-10">
-                        <h4 class="font-bold text-lg mb-4">Connect with Me</h4>
-                        <div class="flex space-x-6">
-                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                                <i class="fab fa-twitter text-xl"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                                <i class="fab fa-medium-m text-xl"></i>
-                            </a>
-                        </div>
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Let's build something amazing together</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p>
+                    I'm always interested in hearing about new projects and opportunities. 
+                    Whether you have a question or just want to say hi, feel free to reach out.
+                </p>
+                <div class="contact-details">
+                    <!--
+                         <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>abdallahkhattab.dev@gmail.com</span>
+                    </div>
+                    -->
+               
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cairo, Egypt</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/abdallahkhattab" target="_blank">github.com/abdallahkhattab</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/abdallah-khattab-73081b2b7" target="_blank">linkedin.com/in/abdallah-khattab</a>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-800 rounded-xl p-8 shadow-2xl">
-                        <h3 class="text-3xl font-bold mb-8 text-white">Send a Message</h3>
-                        <form action="https://formspree.io/f/mwporllr" method="POST">
-                            <div class="mb-6">
-                                <label class="block text-gray-300 text-sm font-bold mb-2" for="name">Your Name</label>
-                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="name" type="text" placeholder="John Doe">
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Your Email</label>
-                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="email" type="email" placeholder="john@example.com">
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-gray-300 text-sm font-bold mb-2" for="subject">Subject</label>
-                                <input class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300" id="subject" type="text" placeholder="Project Inquiry">
-                            </div>
-                            <div class="mb-8">
-                                <label class="block text-gray-300 text-sm font-bold mb-2" for="message">Message</label>
-                                <textarea class="shadow appearance-none border-2 border-gray-700 rounded-lg w-full py-4 px-5 text-gray-300 leading-tight focus:outline-none focus:border-cyan-500 transition duration-300 h-40" id="message" placeholder="Your message here..."></textarea>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <button type="submit" class="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-600 hover:to-amber-600 text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline transition duration-300 w-full text-lg">Send Message</button>
-                            </div>
-                            <div class="mt-6 flex items-center text-sm text-gray-400">
-                                <i class="fas fa-lock mr-3"></i>
-                                <span>Your information is secure</span>
-                            </div>
-                        </form>
-                    </div>
+                <div class="social-links">
+                    <a href="https://github.com/abdallahkhattab" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/abdallah-khattab-73081b2b7" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <!--
+                       <a href="mailto:abdallahkhattab.dev@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    -->
+                 
                 </div>
+            </div>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/mwporllr" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
-    <div class="section-divider"></div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-10">
-        <div class="container mx-auto px-4 z-10 relative">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-3xl font-bold text-white">Abdallah<span class="text-amber-500">Khattab</span></div>
-                    <p class="text-base mt-2">Laravel & Blockchain Developer</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://github.com/abdallahkhattab" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="www.linkedin.com/in/abdallah-khattab-73081b2b7" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-amber-500 transition duration-300 transform hover:scale-110">
-                        <i class="fas fa-envelope text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-base">© 2025 Abdallah Khattab. All rights reserved.</p>
-                <div class="mt-4 md:mt-0">
-                    <span class="text-sm bg-gray-800 px-3 py-2 rounded-full">
-                        <i class="fas fa-code mr-2"></i> Built with Passion
-                    </span>
-                </div>
-            </div>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2025 Abdallah Khattab. Built with passion and code.
+                <br>
+                <a href="https://github.com/abdallahkhattab" target="_blank">made with passion <i class="fab fa-github"></i></a>
+            </p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const hamburger = this;
-            mobileMenu.classList.toggle('hidden');
-            hamburger.classList.toggle('open');
+        // Page Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 1000);
         });
 
-        // Custom cursor and trail effect (disabled on mobile via CSS)
-        const cursor = document.getElementById('custom-cursor');
-        const trails = [];
-        const trailLength = 8;
-        for (let i = 0; i < trailLength; i++) {
-            const div = document.createElement('div');
-            div.className = 'cursor-trail';
-            document.body.appendChild(div);
-            trails.push(div);
-        }
-        let trailIndex = 0;
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-            const trailDot = trails[trailIndex];
-            trailDot.style.left = `${e.clientX}px`;
-            trailDot.style.top = `${e.clientY}px`;
-            trailDot.style.opacity = 0.6;
-            trailDot.style.transform = `scale(${1 - trailIndex / trailLength}) translate(-50%, -50%)`;
-            trailIndex = (trailIndex + 1) % trailLength;
-            trails.forEach((dot, i) => {
-                if (i !== trailIndex) {
-                    dot.style.opacity = Math.max(0, dot.style.opacity - 0.1);
-                }
-            });
+        // Scroll Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
         });
 
-        // Smooth scroll for navigation links
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Typed.js for hero section
-        new Typed('#typed-text', {
-            strings: ['Laravel Developer', 'API Specialist', 'Database Optimizer', 'Blockchain Innovator'],
-            typeSpeed: 100,
-            backSpeed: 50,
-            backDelay: 1500,
-            loop: true,
-            showCursor: false
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // Blockchain Canvas Animation
-        function initBlockchainCanvas() {
-            const canvas = document.getElementById('blockchain-canvas');
-            const heroSection = document.getElementById('hero');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / heroSection.offsetHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-            renderer.setSize(window.innerWidth, heroSection.offsetHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimize for high-DPI displays
+        // Skill Bars Animation on Scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
 
-            const nodes = [];
-            const lines = [];
-            const nodeCount = 20;
-
-            const material = new THREE.MeshBasicMaterial({ color: 0x2dd4bf, transparent: true, opacity: 0.6 });
-            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x2dd4bf, transparent: true, opacity: 0.2 });
-
-            for (let i = 0; i < nodeCount; i++) {
-                const geometry = new THREE.SphereGeometry(0.05, 8, 8); // Smaller nodes
-                const node = new THREE.Mesh(geometry, material);
-                node.position.set(
-                    (Math.random() - 0.5) * 20,
-                    (Math.random() - 0.5) * 20,
-                    (Math.random() - 0.5) * 20
-                );
-                node.velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 0.02,
-                    (Math.random() - 0.5) * 0.02,
-                    (Math.random() - 0.5) * 0.02
-                );
-                scene.add(node);
-                nodes.push(node);
-            }
-
-            for (let i = 0; i < nodeCount; i++) {
-                for (let j = i + 1; j < nodeCount; j++) {
-                    const geometry = new THREE.BufferGeometry();
-                    const positions = new Float32Array(6);
-                    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                    const line = new THREE.Line(geometry, lineMaterial);
-                    lines.push({ line, node1: nodes[i], node2: nodes[j] });
-                    scene.add(line);
-                }
-            }
-
-            camera.position.z = 15;
-let isAnimating = true;
-
-function animate() {
-    if (!isAnimating) return;
-
-    requestAnimationFrame(animate); // keep looping even during scroll
-
-    nodes.forEach(node => {
-        node.position.add(node.velocity);
-
-        // Bounce logic
-        if (node.position.x > 10 || node.position.x < -10) node.velocity.x *= -1;
-        if (node.position.y > 10 || node.position.y < -10) node.velocity.y *= -1;
-        if (node.position.z > 10 || node.position.z < -10) node.velocity.z *= -1;
-    });
-
-    lines.forEach(({ line, node1, node2 }) => {
-        const positions = line.geometry.attributes.position.array;
-
-        // Update positions
-        positions[0] = node1.position.x;
-        positions[1] = node1.position.y;
-        positions[2] = node1.position.z;
-        positions[3] = node2.position.x;
-        positions[4] = node2.position.y;
-        positions[5] = node2.position.z;
-
-        line.geometry.attributes.position.needsUpdate = true;
-
-        // Fade lines based on distance
-        const distance = node1.position.distanceTo(node2.position);
-        line.material.opacity = Math.max(0.1, 0.5 - distance / 20);
-    });
-
-    renderer.render(scene, camera);
-}
-
-// Start animation
-animate();
-
-// OPTIONAL: ensure it keeps running on scroll
-window.addEventListener('scroll', () => {
-    if (!isAnimating) {
-        isAnimating = true;
-        animate();
-    }
-});
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / heroSection.offsetHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, heroSection.offsetHeight);
-            });
-
-            // Mouse interaction
-            canvas.addEventListener('mousemove', (event) => {
-                const rect = heroSection.getBoundingClientRect();
-                const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-                camera.position.x = mouseX * 2;
-                camera.position.y = mouseY * 2;
-                camera.lookAt(0, 0, 0);
-            });
-
-            // IntersectionObserver to pause/resume animation based on hero section visibility
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        isAnimating = entry.isIntersecting;
-                        if (isAnimating) animate();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
                     });
-                },
-                { threshold: 0.1 }
-            );
-            observer.observe(heroSection);
-
-            // Optimize rendering when tab is inactive
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    isAnimating = false;
-                } else if (heroSection.getBoundingClientRect().top < window.innerHeight) {
-                    isAnimating = true;
-                    animate();
                 }
             });
+        }, observerOptions);
+
+        const skillsSection = document.querySelector('.skills');
+        if (skillsSection) {
+            observer.observe(skillsSection);
         }
 
-        // Initialize blockchain canvas on page load
-        initBlockchainCanvas();
+        // Parallax Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-content');
+            parallaxElements.forEach(element => {
+                element.style.transform = `translateY(${scrolled * 0.3}px)`;
+            });
+        });
     </script>
 </body>
 </html>
